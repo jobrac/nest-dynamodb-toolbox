@@ -1,3 +1,4 @@
+import { flatten } from "@nestjs/common";
 import { Table } from "dynamodb-toolbox";
 import { Entity } from "dynamodb-toolbox";
 import { SchemaType } from "dynamodb-toolbox/dist/classes/Entity";
