@@ -17,6 +17,3 @@ jobs:
       run: pnpm install --no-frozen-lockfile
     - name: Running testing...
       run: pnpm test:e2e
-      env :
-        AWS_SECRET_ACCESS_KEY: test
-        AWS_ACCESS_KEY: test

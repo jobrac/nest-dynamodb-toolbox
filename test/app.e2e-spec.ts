@@ -8,8 +8,12 @@ import * as dynalite from 'dynalite';
 
 const dynaliteServer = dynalite({ createTableMs: 50 });
 const dynamodb = new DynamoDB({
-  endpoint: process.env.AWS_ENDPOINT,
-  region: process.env.AWS_REGION
+  endpoint: "http://localhost:4567",
+  region: "us-east-1",
+  credentials: {
+    secretAccessKey: "test",
+    accessKeyId: "test"
+  }
 })
 
 describe('Basic CRUD Test', () => {
@@ -25,7 +29,7 @@ describe('Basic CRUD Test', () => {
 
           if (tables.TableNames.length <= 1) {
             await dynamodb.createTable({
-              TableName: process.env.DYNAMODB_TABLE_NAME,
+              TableName: "test-table",
               KeySchema: [
                 { AttributeName: "pk", KeyType: "HASH" },  //Partition key
                 { AttributeName: "sk", KeyType: "RANGE" }  //Sort key

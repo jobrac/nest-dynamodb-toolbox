@@ -6,28 +6,19 @@ import { DynamoDB } from 'aws-sdk'
 @Module({
     imports: [
         UserModule,
-        // DynamoDBToolboxModule.forRoot({
-        //     DocumentClient: new DynamoDB.DocumentClient({
-        //         endpoint: process.env.AWS_ENDPOINT,
-        //         region: process.env.AWS_REGION
-        //     }),
-        //     name: process.env.DYNAMODB_TABLE_NAME,
-        //     partitionKey: "pk",
-        //     sortKey: "sk"
-        // }),
-        DynamoDBToolboxModule.forRootAsync({
-            useFactory: () => {
-                return {
-                    DocumentClient: new DynamoDB.DocumentClient({
-                        endpoint: process.env.AWS_ENDPOINT,
-                        region: process.env.AWS_REGION
-                    }),
-                    name: process.env.DYNAMODB_TABLE_NAME,
-                    partitionKey: "pk",
-                    sortKey: "sk"
+        DynamoDBToolboxModule.forRoot({
+            DocumentClient: new DynamoDB.DocumentClient({
+                endpoint: "http://localhost:4567",
+                region: "us-east-1",
+                credentials: {
+                    accessKeyId: "test",
+                    secretAccessKey: "test"
                 }
-            }
-        })
+            }),
+            name: "test-table",
+            partitionKey: "pk",
+            sortKey: "sk"
+        }),
     ]
 })
 export class AppModule { }
