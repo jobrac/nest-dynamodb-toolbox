@@ -4,7 +4,7 @@
   "description": "Nest - modern, fast, powerful node.js web framework (@dynamodb-toolbox)",
   "author": "Jobel Racines",
   "main": "lib/index.js",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "scripts": {
     "build": "rm -rf lib && tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
