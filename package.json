@@ -5,6 +5,14 @@
   "author": "Jobel Racines",
   "main": "lib/index.js",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jobrac/nest-dynamodb-toolbox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jobrac/nest-dynamodb-toolbox/issues"
+  },
+  "homepage": "https://github.com/jobrac/nest-dynamodb-toolbox#readme",
   "scripts": {
     "build": "rm -rf lib && tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
