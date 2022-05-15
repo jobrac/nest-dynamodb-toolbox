@@ -12,7 +12,11 @@ process.env.DYNAMODB_TABLE_NAME = 'test'
 const dynaliteServer = dynalite({ createTableMs: 50 });
 const dynamodb = new DynamoDB({
   endpoint: process.env.AWS_ENDPOINT,
-  region: process.env.AWS_REGION
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: "XXXXXXXX",
+    secretAccessKey: "XXXXXXXX"
+  }
 })
 
 describe('Basic CRUD Test', () => {
