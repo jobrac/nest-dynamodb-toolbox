@@ -1,0 +1,35 @@
+name: Dependabot auto-merge
+on:
+  pull_request_target
+jobs:
+  dependabot:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - uses: pnpm/action-setup@v2.1.0
+      with:
+        version: 6.32.1
+    - name: Installing modules...
+      run: pnpm install --no-frozen-lockfile
+    - name: Running testing...
+      run: pnpm test:e2e
+    - name: 'Auto approve PR by Dependabot'
+      uses: hmarr/auto-approve-action@v2.0.0
+      with:
+        github-token: "${{ secrets.NEST_DYNAMODB_TOOLBOX_TOKEN }}"
+    - name: 'Comment merge command'
+      uses: actions/github-script@v3
+      with:
+        github-token: ${{secrets.NEST_DYNAMODB_TOOLBOX_TOKEN }}
+        script: |
+          await github.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+            body: '@dependabot squash and merge'
+          })
