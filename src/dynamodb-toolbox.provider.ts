@@ -2,8 +2,8 @@ import { flatten } from "@nestjs/common";
 import { Table } from "dynamodb-toolbox";
 import { Entity } from "dynamodb-toolbox";
 import { SchemaType } from "dynamodb-toolbox/dist/classes/Entity";
-import { getEntityToken } from "./common/dynamodb.utils";
-import { DYNAMODB_INITIALIZATION } from "./dynamodb.constants";
+import { getEntityToken } from "./common/dynamodb-toolbox.utils";
+import { DYNAMODB_TOOLBOX_INITIALIZATION } from "./dynamodb-toolbox.constants";
 import { AsyncEntityFactory } from "./interfaces/async-entity-factory.interface";
 
 export function createDynamodbProviders(entities: Array<Entity<SchemaType>> = []) {
@@ -13,7 +13,7 @@ export function createDynamodbProviders(entities: Array<Entity<SchemaType>> = []
             entity.table = table;
             return entity
         },
-        inject: [DYNAMODB_INITIALIZATION],
+        inject: [DYNAMODB_TOOLBOX_INITIALIZATION],
     }));
     return providers;
 }
@@ -29,7 +29,7 @@ export function createDynamooseAsyncProviders(
                 entity.table = table;
                 return entity
             },
-            inject: [DYNAMODB_INITIALIZATION, ...(entity.inject || [])],
+            inject: [DYNAMODB_TOOLBOX_INITIALIZATION, ...(entity.inject || [])],
         },
     ]);
     return flatten(providers);

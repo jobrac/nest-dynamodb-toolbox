@@ -1,0 +1,19 @@
+name: Github CI Action
+on:
+  pull_request_target
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - uses: pnpm/action-setup@v2.1.0
+      with:
+        version: 6.32.1
+    - name: Installing modules...
+      run: pnpm install --no-frozen-lockfile
+    - name: Running testing...
+      run: pnpm test:e2e

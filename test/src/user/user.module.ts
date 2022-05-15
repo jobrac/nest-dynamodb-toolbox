@@ -1,12 +1,12 @@
 import { Module } from "@nestjs/common";
-import { DynamodbModule } from "src/dynamodb.module";
+import { DynamoDBToolboxModule } from "../../../src/dynamodb-toolbox.module";
 import { UserController } from "./user.controller";
 import { UserEntity } from "./user.entity";
 import { UserService } from "./user.service";
 
 @Module({
     imports: [
-        DynamodbModule.forFeature([UserEntity])
+        DynamoDBToolboxModule.forFeature([UserEntity])
     ],
     controllers: [UserController],
     providers: [UserService]

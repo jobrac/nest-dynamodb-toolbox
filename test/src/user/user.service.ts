@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { randomBytes } from "crypto";
-import { InjectEntity } from "src/common/dynamodb.decorator";
+import { InjectEntity } from "../../../src/common/dynamodb-toolbox.decorator";
 import { UserEntity } from "./user.entity";
 
 
