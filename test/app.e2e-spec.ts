@@ -5,18 +5,11 @@ import { AppModule } from './src/app.module';
 import { DynamoDB } from 'aws-sdk';
 import * as dynalite from 'dynalite';
 
-process.env.AWS_ENDPOINT = "http://localhost:4567"
-process.env.AWS_REGION = 'us-east-1'
-process.env.DYNAMODB_TABLE_NAME = 'test'
 
 const dynaliteServer = dynalite({ createTableMs: 50 });
 const dynamodb = new DynamoDB({
   endpoint: process.env.AWS_ENDPOINT,
-  region: process.env.AWS_REGION,
-  credentials: {
-    accessKeyId: "XXXXXXXX",
-    secretAccessKey: "XXXXXXXX"
-  }
+  region: process.env.AWS_REGION
 })
 
 describe('Basic CRUD Test', () => {

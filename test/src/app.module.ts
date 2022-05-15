@@ -22,7 +22,7 @@ import { DynamoDB } from 'aws-sdk'
                         endpoint: process.env.AWS_ENDPOINT,
                         region: process.env.AWS_REGION
                     }),
-                    name: "test",
+                    name: process.env.DYNAMODB_TABLE_NAME,
                     partitionKey: "pk",
                     sortKey: "sk"
                 }
