@@ -3,7 +3,7 @@ import { Table } from "dynamodb-toolbox";
 import { Entity } from "dynamodb-toolbox";
 import { SchemaType } from "dynamodb-toolbox/dist/classes/Entity";
 import { getEntityToken } from "./common/dynamodb-toolbox.utils";
-import { DYNAMODB_TOOLBOX_INITIALIZATION } from "./dynamodb-toolbox.constants";
+import { DYNAMODB_TABLE } from "./dynamodb-toolbox.constants";
 import { AsyncEntityFactory } from "./interfaces/async-entity-factory.interface";
 
 export function createDynamodbProviders(entities: Array<Entity<SchemaType>> = []) {
@@ -13,7 +13,7 @@ export function createDynamodbProviders(entities: Array<Entity<SchemaType>> = []
             entity.table = table;
             return entity
         },
-        inject: [DYNAMODB_TOOLBOX_INITIALIZATION],
+        inject: [DYNAMODB_TABLE],
     }));
     return providers;
 }
@@ -29,7 +29,7 @@ export function createDynamooseAsyncProviders(
                 entity.table = table;
                 return entity
             },
-            inject: [DYNAMODB_TOOLBOX_INITIALIZATION, ...(entity.inject || [])],
+            inject: [DYNAMODB_TABLE, ...(entity.inject || [])],
         },
     ]);
     return flatten(providers);

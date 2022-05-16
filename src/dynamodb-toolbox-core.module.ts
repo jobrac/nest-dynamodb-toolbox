@@ -1,6 +1,6 @@
 import { DynamicModule, Global, Module, Provider, Type } from "@nestjs/common";
 import { Table } from "dynamodb-toolbox";
-import { DYNAMODB_TOOLBOX_INITIALIZATION, DYNAMODB_TOOLBOX_MODULE_OPTIONS } from "./dynamodb-toolbox.constants";
+import { DYNAMODB_OPTIONS, DYNAMODB_TABLE } from "./dynamodb-toolbox.constants";
 import { DynamoDBToolboxModuleOptions, DynamoDBToolboxModuleAsyncOptions, DynamoDBToolboxOptionsFactory } from "./interfaces/dynamodb-toolbox-options.interface";
 
 @Global()
@@ -10,7 +10,7 @@ export class DynamoDBToolboxCoreModule {
     static forRoot(options: DynamoDBToolboxModuleOptions): DynamicModule {
 
         const provider = {
-            provide: DYNAMODB_TOOLBOX_INITIALIZATION,
+            provide: DYNAMODB_TABLE,
             useFactory: () => new Table(options)
         }
 
@@ -25,9 +25,9 @@ export class DynamoDBToolboxCoreModule {
 
     static forRootAsync(options: DynamoDBToolboxModuleAsyncOptions): DynamicModule {
         const provider = {
-            provide: DYNAMODB_TOOLBOX_INITIALIZATION,
+            provide: DYNAMODB_TABLE,
             useFactory: (options: DynamoDBToolboxModuleOptions) => new Table(options),
-            inject: [DYNAMODB_TOOLBOX_MODULE_OPTIONS],
+            inject: [DYNAMODB_OPTIONS],
         }
 
         const asyncProviders = this.createAsyncProviders(options);
@@ -57,7 +57,7 @@ export class DynamoDBToolboxCoreModule {
     private static createAsyncOptionsProvider(options: DynamoDBToolboxModuleAsyncOptions): Provider {
         if (options.useFactory) {
             return {
-                provide: DYNAMODB_TOOLBOX_MODULE_OPTIONS,
+                provide: DYNAMODB_OPTIONS,
                 useFactory: options.useFactory,
                 inject: options.inject || [],
             };
@@ -69,7 +69,7 @@ export class DynamoDBToolboxCoreModule {
         ];
 
         return {
-            provide: DYNAMODB_TOOLBOX_MODULE_OPTIONS,
+            provide: DYNAMODB_OPTIONS,
             useFactory: async (optionsFactory: DynamoDBToolboxOptionsFactory) =>
                 await optionsFactory.createDynamooseOptions(),
             inject,

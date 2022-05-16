@@ -1,2 +1,2 @@
-export const DYNAMODB_TOOLBOX_MODULE_OPTIONS = 'DynamoDBToolboxModuleOptions';
-export const DYNAMODB_TOOLBOX_INITIALIZATION = 'DynamoDBToolboxInitialiation';
+export const DYNAMODB_OPTIONS = 'DYNAMODB_OPTIONS';
+export const DYNAMODB_TABLE = 'DYNAMODB_TABLE';
