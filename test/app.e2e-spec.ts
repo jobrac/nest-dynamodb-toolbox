@@ -124,4 +124,20 @@ describe('Basic CRUD Test', () => {
         expect(ScannedCount).toEqual(0);
       })
   });
+
+  it('Create Transaction item', () => {
+    return request(app.getHttpServer())
+      .post('/users')
+      .send([{
+        name: 'test1'
+      }, {
+        name: 'test2'
+      }, {
+        name: 'test3'
+      }, {
+        name: 'test4'
+      }])
+      .expect(201)
+      .expect({})
+  });
 });
