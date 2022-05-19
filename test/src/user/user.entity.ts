@@ -1,6 +1,6 @@
 import { Entity } from "dynamodb-toolbox";
 
-export const UserEntity = new Entity({
+export const UserEntity = new Entity<User>({
     name: 'User',
     attributes: {
         pk: { partitionKey: true },
@@ -10,3 +10,9 @@ export const UserEntity = new Entity({
         }
     }
 });
+
+export interface User {
+    pk: string,
+    sk: string,
+    name: string
+}

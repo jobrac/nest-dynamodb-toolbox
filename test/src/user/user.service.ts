@@ -33,7 +33,7 @@ export class UserService {
                 return this.entity.putTransaction({
                     pk: randomId,
                     sk: randomId,
-                    name
+                    name: e,
                 })
             }), {
                 capacity: 'total',
