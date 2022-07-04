@@ -39,7 +39,7 @@
     "@typescript-eslint/parser": "^5.0.0",
     "aws-sdk": "^2.1133.0",
     "dynalite": "^3.2.2",
-    "dynamodb-toolbox": "^0.3.5",
+    "dynamodb-toolbox": "^0.4.2",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -76,7 +76,7 @@
   "peerDependencies": {
     "@nestjs/common": "^6.0.0 || ^7.0.0 || ^8.0.0",
     "@nestjs/core": "^6.0.0 || ^7.0.0 || ^8.0.0",
-    "dynamodb-toolbox": "^0.3.5",
+    "dynamodb-toolbox": "^0.4.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0"
   }
